@@ -1,0 +1,206 @@
+$breakpoints: (
+    "sm": 576px,
+    "md": 768px,
+    "lg": 992px
+);
+
+// Define Breakpoints
+$breakpoints: (
+    "sm": 576px,
+    "md": 768px,
+    "lg": 992px
+);
+
+// Responsive Mixins
+@mixin marginStart($value, $breakpoint: null) {
+    @if $breakpoint {
+        @media (min-width: map-get($breakpoints, $breakpoint)) {
+            margin-left: $value !important;
+        }
+    } @else {
+        margin-left: $value !important;
+    }
+}
+
+@mixin marginTop($value, $breakpoint: null) {
+    @if $breakpoint {
+        @media (min-width: map-get($breakpoints, $breakpoint)) {
+            margin-top: $value !important;
+        }
+    } @else {
+        margin-top: $value !important;
+    }
+}
+
+@mixin marginBottom($value, $breakpoint: null) {
+    @if $breakpoint {
+        @media (min-width: map-get($breakpoints, $breakpoint)) {
+            margin-bottom: $value !important;
+        }
+    } @else {
+        margin-bottom: $value !important;
+    }
+}
+
+@mixin margin($value, $breakpoint: null) {
+    @if $breakpoint {
+        @media (min-width: map-get($breakpoints, $breakpoint)) {
+            margin: $value !important;
+        }
+    } @else {
+        margin: $value !important;
+    }
+}
+
+@mixin marginEnd($value, $breakpoint: null) {
+    @if $breakpoint {
+        @media (min-width: map-get($breakpoints, $breakpoint)) {
+            margin-right: $value !important;
+        }
+    } @else {
+        margin-right: $value !important;
+    }
+}
+
+@mixin paddingStart($value, $breakpoint: null) {
+    @if $breakpoint {
+        @media (min-width: map-get($breakpoints, $breakpoint)) {
+            padding-left: $value !important;
+        }
+    } @else {
+        padding-left: $value !important;
+    }
+}
+
+@mixin paddingEnd($value, $breakpoint: null) {
+    @if $breakpoint {
+        @media (min-width: map-get($breakpoints, $breakpoint)) {
+            padding-right: $value !important;
+        }
+    } @else {
+        padding-right: $value !important;
+    }
+}
+
+@mixin paddingTop($value, $breakpoint: null) {
+    @if $breakpoint {
+        @media (min-width: map-get($breakpoints, $breakpoint)) {
+            padding-top: $value !important;
+        }
+    } @else {
+        padding-top: $value !important;
+    }
+}
+
+@mixin paddingBottom($value, $breakpoint: null) {
+    @if $breakpoint {
+        @media (min-width: map-get($breakpoints, $breakpoint)) {
+            padding-bottom: $value !important;
+        }
+    } @else {
+        padding-bottom: $value !important;
+    }
+}
+
+@mixin padding($value, $breakpoint: null) {
+    @if $breakpoint {
+        @media (min-width: map-get($breakpoints, $breakpoint)) {
+            padding: $value !important;
+        }
+    } @else {
+        padding: $value !important;
+    }
+}
+
+// Generate Utility Classes
+@mixin ms() {
+    @for $value from 1 through 1000 {
+        .-ms-#{$value} {
+            @include marginStart(#{$value}px);
+        }
+        .-mt-#{$value} {
+            @include marginTop(#{$value}px);
+        }
+        .-mb-#{$value} {
+            @include marginBottom(#{$value}px);
+        }
+        .-m-#{$value} {
+            @include margin(#{$value}px);
+        }
+        .-me-#{$value} {
+            @include marginEnd(#{$value}px);
+        }
+        .-ps-#{$value} {
+            @include paddingStart(#{$value}px);
+        }
+        .-pe-#{$value} {
+            @include paddingEnd(#{$value}px);
+        }
+        .-pt-#{$value} {
+            @include paddingTop(#{$value}px);
+        }
+        .-pb-#{$value} {
+            @include paddingBottom(#{$value}px);
+        }
+        .-p-#{$value} {
+            @include padding(#{$value}px);
+        }
+
+        @each $breakpoint in ("sm", "md", "lg") {
+            .-ms-#{$breakpoint}-#{$value} {
+                @include marginStart(#{$value}px, $breakpoint);
+            }
+            .-mt-#{$breakpoint}-#{$value} {
+                @include marginTop(#{$value}px, $breakpoint);
+            }
+            .-mb-#{$breakpoint}-#{$value} {
+                @include marginBottom(#{$value}px, $breakpoint);
+            }
+            .-m-#{$breakpoint}-#{$value} {
+                @include margin(#{$value}px, $breakpoint);
+            }
+            .-me-#{$breakpoint}-#{$value} {
+                @include marginEnd(#{$value}px, $breakpoint);
+            }
+            .-ps-#{$breakpoint}-#{$value} {
+                @include paddingStart(#{$value}px, $breakpoint);
+            }
+            .-pe-#{$breakpoint}-#{$value} {
+                @include paddingEnd(#{$value}px, $breakpoint);
+            }
+            .-pt-#{$breakpoint}-#{$value} {
+                @include paddingTop(#{$value}px, $breakpoint);
+            }
+            .-pb-#{$breakpoint}-#{$value} {
+                @include paddingBottom(#{$value}px, $breakpoint);
+            }
+            .-p-#{$breakpoint}-#{$value} {
+                @include padding(#{$value}px, $breakpoint);
+            }
+        }
+    }
+}
+
+@mixin flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin flex-end {
+    display: flex;
+    justify-content: flex-end;
+    // align-items: center;
+}
+
+@mixin align-center {
+    display: flex;
+    align-items: center;
+}
+
+.flex-end {
+    @include flex-end();
+}
+
+// Include the Generated Classes
+@include ms();

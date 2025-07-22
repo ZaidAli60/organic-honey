@@ -1,0 +1,231 @@
+$xxxl: "only screen and (min-width: 1600px)";
+$xxl: "only screen and (min-width: 1400px)";
+$xl: "only screen and (min-width: 1200px)";
+$lg: "only screen and (min-width: 992px)";
+$md: "only screen and (min-width: 768px)";
+$xs: "only screen and (max-width: 767px)";
+
+// @import "./header";
+// @import "./about";
+// @import "./contact";
+// @import "./founder";
+// @import "./testimonials";
+// @import "./home";
+// @import "./courses";
+// @import "./blog";
+// @import "./work";
+// @import "./sdp";
+
+.btn-default {
+    display: inline-block;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.1em;
+    color: #fff;
+    background: $primary;
+    text-transform: capitalize;
+    padding: 15px 45px 15px 20px;
+    border: 2px solid $primary;
+    border-radius: 100px;
+    transition: 0.3s ease-in-out;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    text-decoration: none;
+}
+
+.btn-default::before {
+    content: "\f062";
+    position: absolute;
+    top: 50%;
+    right: 0;
+    bottom: 0;
+    font-family: "FontAwesome";
+    font-size: 18px;
+    font-weight: 900;
+    transition: 0.3s ease-in-out;
+    background: transparent;
+    color: #fff;
+    transform: translate(-20px, -50%) rotate(45deg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-default:hover:before {
+    color: $primary;
+    transform: translate(-20px, -50%) rotate(90deg);
+}
+
+.btn-default::after {
+    content: "";
+    display: block;
+    width: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    z-index: -1;
+    background: #fff;
+    border-radius: 30px;
+    transition: 0.3s ease-in-out;
+}
+
+.btn-default:hover::after {
+    width: 100%;
+}
+
+.btn-default:hover {
+    color: $primary;
+}
+
+.btn-default1 {
+    display: inline-block;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.1em;
+    color: #fff;
+    background: $primary;
+    text-transform: capitalize;
+    padding: 15px 20px;
+    border: 2px solid $primary;
+    border-radius: 100px;
+    transition: 0.3s ease-in-out;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    text-decoration: none;
+}
+
+.btn-default1::after {
+    content: "";
+    display: block;
+    width: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    z-index: -1;
+    background: #fff;
+    border-radius: 30px;
+    transition: 0.3s ease-in-out;
+}
+
+.btn-default1:hover::after {
+    width: 100%;
+}
+
+.btn-default1:hover {
+    color: $primary;
+}
+
+.btn-default2 {
+    display: inline-block;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.1em;
+    color: #fff;
+    background: $primary;
+    text-transform: capitalize;
+    padding: 15px 20px;
+    border-radius: 100px;
+    transition: 0.3s ease-in-out;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    text-decoration: none;
+    border: 0;
+}
+
+.btn-default2::after {
+    content: "";
+    display: block;
+    width: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    z-index: -1;
+    background: #fff;
+    border-radius: 30px;
+    transition: 0.3s ease-in-out;
+}
+
+.btn-default2:hover::after {
+    width: 100%;
+}
+
+.btn-default2:hover {
+    color: $primary;
+}
+
+.btn-default-sm {
+    display: inline-block;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.1em;
+    color: #fff;
+    background: $primary;
+    text-transform: capitalize;
+    padding: 10px 15px;
+    border-radius: 100px;
+    transition: 0.3s ease-in-out;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    text-decoration: none;
+    border: 2px solid $primary;
+}
+
+.btn-default-sm::after {
+    content: "";
+    display: block;
+    width: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    z-index: -1;
+    background: #fff;
+    border-radius: 30px;
+    transition: 0.3s ease-in-out;
+}
+
+.btn-default-sm:hover::after {
+    width: 100%;
+}
+
+.btn-default-sm:hover {
+    color: $primary;
+}
+
+.fw-500 {
+    font-weight: 500;
+}
+
+.fw-600 {
+    font-weight: 600;
+}
+
+.fw-700 {
+    font-weight: 700;
+}
+
+.section-title {
+    font-size: 70px;
+    letter-spacing: -1px;
+    font-weight: 500;
+    margin-bottom: 0;
+}
+
+@media only screen and (max-width: 991px) {
+    .section-title {
+        font-size: 46px;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .section-title {
+        font-size: 30px;
+    }
+}
