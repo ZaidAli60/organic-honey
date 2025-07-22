@@ -53,7 +53,7 @@ export default function Index() {
             {/* <Footer /> */}
 
             <Modal centered open={isModal} closable={false} onCancel={() => setIsModal(false)} footer={null} className='announcement-modal' >
-                {announcements.length === 1
+                {announcements?.length === 1
                     ? <>
                         <Image src={announcements[0].photoURL} preview={false} />
 
