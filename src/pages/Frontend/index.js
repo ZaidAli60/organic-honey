@@ -1,28 +1,28 @@
 import React, { useEffect, useState } from 'react'
 import { Route, Routes, useNavigate } from 'react-router-dom'
 import { Button, Image, Modal, Typography } from 'antd'
-import { useWebsiteSettings } from 'context/WebsiteSettingsContext'
+// import { useWebsiteSettings } from 'context/WebsiteSettingsContext'
 import Header from "../../components/header"
-import Footer from 'components/footer/Footer'
+// import Footer from 'components/footer/Footer'
 import Home from "./Home"
-import Slider from "react-slick";
+// import Slider from "react-slick";
 
 const { Text } = Typography;
 
 
 export default function Index() {
 
-    const { isLoading, announcements } = useWebsiteSettings()
+    // const { isLoading, announcements } = useWebsiteSettings()
     const [isModal, setIsModal] = useState(false)
 
     const navigate = useNavigate()
 
-    let settings = { dots: false, infinite: true, speed: 500, slidesToShow: 1, slidesToScroll: 1, };
+    // let settings = { dots: false, infinite: true, speed: 500, slidesToShow: 1, slidesToScroll: 1, };
 
-    useEffect(() => {
-        let announcementCheck = JSON.parse(sessionStorage.getItem("isMainAd"))
-        if (!announcementCheck && announcements.length > 0 && !isLoading) { setIsModal(true); sessionStorage.setItem('isMainAd', JSON.stringify(true)) }
-    }, [announcements, isLoading])
+    // useEffect(() => {
+    //     let announcementCheck = JSON.parse(sessionStorage.getItem("isMainAd"))
+    //     if (!announcementCheck && announcements.length > 0 && !isLoading) { setIsModal(true); sessionStorage.setItem('isMainAd', JSON.stringify(true)) }
+    // }, [announcements, isLoading])
 
     // const handleClick = (url) => {
 
@@ -30,16 +30,16 @@ export default function Index() {
     //     setIsModal(false)
     //     sessionStorage.setItem('isMainAd', JSON.stringify(true))
 
-    const handleClick = (url) => {
-        if (url?.startsWith('http')) {
-            window.open(url, '_blank', 'noopener,noreferrer')
-        } else {
-            navigate(url)
-        }
+    // const handleClick = (url) => {
+    //     if (url?.startsWith('http')) {
+    //         window.open(url, '_blank', 'noopener,noreferrer')
+    //     } else {
+    //         navigate(url)
+    //     }
 
-        setIsModal(false)
-        sessionStorage.setItem('isMainAd', JSON.stringify(true))
-    }
+    //     setIsModal(false)
+    //     sessionStorage.setItem('isMainAd', JSON.stringify(true))
+    // }
 
     // }
     return (
@@ -52,7 +52,7 @@ export default function Index() {
             </main>
             {/* <Footer /> */}
 
-            <Modal centered open={isModal} closable={false} onCancel={() => setIsModal(false)} footer={null} className='announcement-modal' >
+            {/* <Modal centered open={isModal} closable={false} onCancel={() => setIsModal(false)} footer={null} className='announcement-modal' >
                 {announcements?.length === 1
                     ? <>
                         <Image src={announcements[0].photoURL} preview={false} />
@@ -70,7 +70,7 @@ export default function Index() {
                         </div>)}
                     </Slider>
                 }
-            </Modal>
+            </Modal> */}
         </>
     )
 }
