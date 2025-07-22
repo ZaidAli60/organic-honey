@@ -63,7 +63,7 @@ export default function Index() {
                         </div>
                     </>
                     : <Slider {...settings}>
-                        {announcements.map((ann, i) => <div key={i}>
+                        {announcements?.map((ann, i) => <div key={i}>
                             <Text className='text-center d-block' style={{ fontSize: 18, fontWeight: 'bold' }}>{ann.text}</Text>
                             <Image src={ann.photoURL} preview={false} />
                             <Button type='primary' block onClick={() => window.open(ann.btnUrl, "_blank")}>{ann.btnText}</Button>
