@@ -202,3 +202,9 @@ ul {
 .product-img:hover img {
   transform: scale(1.05);
 }
+
+
+footer a:hover {
+  color: #ffc107 !important; /* Bootstrap warning color */
+  transition: 0.3s;
+}

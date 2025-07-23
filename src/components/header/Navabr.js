@@ -75,10 +75,9 @@ export default function Navabr() {
         <div className='navbar-container py-3'>
           <div className='logo'>
             <Link className='main-link' to='/'>
-              <Image src="https://greenpath.qodeinteractive.com/wp-content/uploads/2024/02/logo-dark-x2.png" preview={false}  className='company-nav-logo' />
-              {/* <h3 className={isHeaderScrolled ? "text-white" : "text-primary"}>HyperColab</h3> */}
+              <a className='text-decoration-none text-primary' href="#"><i className="fa-solid fa-leaf me-2"></i> Organic2Buy</a>
             </Link>
-          </div>  
+          </div>
           <div>
             <input type='checkbox' id='checkbox1' className='checkbox1 visuallyHidden' checked={showNav} onChange={toggleNavItems} />
             <label className='menu-icon' htmlFor='checkbox1'>
