@@ -1,56 +1,51 @@
-import { Image } from 'antd'
-import React from 'react'
-import lightLogo from "assests/kightlogo.webp";
+import React from "react";
+import { FaFacebookF, FaInstagram, FaTwitter, FaLinkedin } from "react-icons/fa";
 
 export default function Footer() {
-    return (
-        <footer className="bg-primary text-light p-5">
-            <div className="container">
-                {/* Top Row: Logo and Socials */}
-                <div className="d-flex flex-column flex-md-row justify-content-between align-items-center footerCol">
-                    {/* Logo */}
-                    <Image src={lightLogo} preview={false} height={100} className='company-nav-logo' />
+  return (
+    <footer className="bg-dark text-light pt-5 pb-3">
+      <div className="container">
+        <div className="row">
 
-                    {/* WhatsApp Community Section */}
-                    <div className="rounded text-center text-white mt-4 d-flex flex-column align-items-center">
-                        <h5 className="fw-bold">Join Our Community</h5>
-                        <a
-                            href="https://chat.whatsapp.com/your-community-link"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="btn btn-outline-light d-inline-flex align-items-center mt-2 whatsapp-btn"
-                        >
-                            <i className="fab fa-whatsapp me-2 fs-5"></i> WhatsApp Community
-                        </a>
-                        <p className="mt-2 text-secondary small">
-                            Join our WhatsApp community for latest updates & discussions.
-                        </p>
-                    </div>
-                    <div className="mt-3 mt-md-0">
-                        <a href={window.links.facebook} target="_blank" rel="noopener noreferrer" className="text -ps-15 text-decoration-none">
-                            <i className="fab fa-facebook-f"></i>
-                        </a>
-                        <a href={window.links.instagram} target="_blank" rel="noopener noreferrer" className="text -ps-15">
-                            <i className="fab fa-instagram"></i>
-                        </a>
-                        <a href={window.links.linkedin} target="_blank" rel="noopener noreferrer" className="text -ps-15">
-                            <i className="fab fa-linkedin"></i>
-                        </a>
-                        <a href={window.links.youtube} target="_blank" rel="noopener noreferrer" className="text -ps-15">
-                            <i className="fab fa-youtube"></i>
-                        </a>
-                        <a href={window.links.github} target="_blank" rel="noopener noreferrer" className="text -ps-15">
-                            <i className="fab fa-github"></i>
-                        </a>
-                    </div>
+          {/* Logo & Description */}
+          <div className="col-md-4 mb-4">
+            <img src="https://greenpath.qodeinteractive.com/wp-content/uploads/2024/02/logo-dark-x2.png" alt="Logo" style={{ width: "150px" }} className="mb-3" />
+            <p>
+              Providing 100% organic honey, dry fruits, and oils — straight from nature to your doorstep.
+            </p>
+          </div>
 
-                </div>
-                <hr className='text-white p-0 m-0 mb-4' />
-                {/* Bottom Copyright */}
-                <div className="text-center small text-secondary">
-                    © HyperColab | <span className="text-white fw-bold ">— An AI-based Company</span>
-                </div>
+          {/* Quick Links */}
+          <div className="col-md-4 mb-4">
+            <h5 className="text-warning">Quick Links</h5>
+            <ul className="list-unstyled">
+              <li><a href="/" className="text-light text-decoration-none">Home</a></li>
+              <li><a href="#products" className="text-light text-decoration-none">Products</a></li>
+              <li><a href="#about" className="text-light text-decoration-none">About Us</a></li>
+              <li><a href="#contact" className="text-light text-decoration-none">Contact</a></li>
+            </ul>
+          </div>
+
+          {/* Contact Info */}
+          <div className="col-md-4 mb-4">
+            <h5 className="text-warning">Contact Us</h5>
+            <p className="mb-1">Email: support@organicmart.com</p>
+            <p className="mb-1">Phone: +92 300 1234567</p>
+            <p>Location: Karachi, Pakistan</p>
+            <div className="d-flex gap-3 mt-3">
+              <a href="#" className="text-light"><FaFacebookF /></a>
+              <a href="#" className="text-light"><FaInstagram /></a>
+              <a href="#" className="text-light"><FaTwitter /></a>
+              <a href="#" className="text-light"><FaLinkedin /></a>
             </div>
-        </footer>
-    )
+          </div>
+        </div>
+
+        <hr className="border-light" />
+        <div className="text-center">
+          <p className="mb-0">&copy; {new Date().getFullYear()} OrganicMart. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+  );
 }

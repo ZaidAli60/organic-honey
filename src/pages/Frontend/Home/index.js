@@ -3,6 +3,7 @@ import Hero from './Hero'
 import About from './About'
 import Products from './Products'
 import Testimonails from './Testimonails'
+import Contact from './Contact'
 
 export default function Index() {
     return (
@@ -11,6 +12,7 @@ export default function Index() {
             <About />
             <Products />
             <Testimonails />
+            <Contact />
         </>
     )
 }

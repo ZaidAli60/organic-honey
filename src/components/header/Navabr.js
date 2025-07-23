@@ -1,10 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { IoChevronDownOutline } from 'react-icons/io5';
-// import { Image } from 'antd';
 
-import lightLogo from 'assests/kightlogo.webp';
-import darkLogo from 'assests/darklogo.webp';
 import { Image } from 'antd';
 
 export default function Navabr() {

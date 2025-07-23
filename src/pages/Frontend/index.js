@@ -5,6 +5,7 @@ import { Button, Image, Modal, Typography } from 'antd'
 import Header from "../../components/header"
 // import Footer from 'components/footer/Footer'
 import Home from "./Home"
+import Footer from 'components/footer/Footer'
 // import Slider from "react-slick";
 
 const { Text } = Typography;
@@ -50,7 +51,7 @@ export default function Index() {
                     <Route path='/' element={<Home />} />
                 </Routes>
             </main>
-            {/* <Footer /> */}
+            <Footer />
 
             {/* <Modal centered open={isModal} closable={false} onCancel={() => setIsModal(false)} footer={null} className='announcement-modal' >
                 {announcements?.length === 1
