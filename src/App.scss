@@ -167,3 +167,12 @@ ul {
     transform: rotate(0deg) translateX(180px) rotate(0deg);
   }
 }
+
+
+
+.slick-slide {
+  padding: 10px;
+}
+.slick-dots li button:before {
+  color: #f1c40f; /* Yellowish dot color */
+}
