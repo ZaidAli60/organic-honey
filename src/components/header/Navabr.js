@@ -78,7 +78,7 @@ export default function Navabr() {
         <div className='navbar-container py-3'>
           <div className='logo'>
             <Link className='main-link' to='/'>
-              <Image src="https://sweetmielo.like-themes.com/wp-content/uploads/2018/08/logo-1.png" preview={false}  className='company-nav-logo' />
+              <Image src="https://greenpath.qodeinteractive.com/wp-content/uploads/2024/02/logo-dark-x2.png" preview={false}  className='company-nav-logo' />
               {/* <h3 className={isHeaderScrolled ? "text-white" : "text-primary"}>HyperColab</h3> */}
             </Link>
           </div>  

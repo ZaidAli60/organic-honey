@@ -10,18 +10,18 @@ export default function Hero() {
 
     const slides = [
         {
-            title1: 'Natural',
-            title2: 'Honey',
-            title3: 'and Beekeeping',
-            description: '100% organic, sustainable, and sweet honey straight from our bees.',
-            image: 'https://sweetmielo.like-themes.com/wp-content/uploads/2017/09/slider-image-1.png',
-        },
-        {
             title1: 'Premium',
             title2: 'Dry Fruits',
             title3: 'Handpicked For You',
             description: 'Fresh, crunchy, and full of nutrients. Organic dry fruits for your health.',
             image: 'https://media.istockphoto.com/id/508859187/photo/assorted-mixed-nuts.jpg?s=612x612&w=0&k=20&c=xoTcMSvkqy9xUpnRdL0PvSzh4gx0tt1pvQO3cWXiWTk=',
+        },
+        {
+            title1: 'Natural',
+            title2: 'Honey',
+            title3: 'and Beekeeping',
+            description: '100% organic, sustainable, and sweet honey straight from our bees.',
+            image: 'https://sweetmielo.like-themes.com/wp-content/uploads/2017/09/slider-image-1.png',
         },
         {
             title1: 'Cold Pressed',
@@ -106,29 +106,59 @@ export default function Hero() {
                 </div>
             </div> */}
 
-            <div className="container my-5 ">
+            <div className="container my-5">
                 <Slider {...settings}>
-                    {slides.map((item, index) => (
-                        <div key={index} className="slider-slide p-4">
-                            <div className="row align-items-center">
-                                <div className="col-md-6 text-center text-md-start">
-                                    <h1 className="fw-bold display-5">
-                                        <span className="text-primary">{item.title1}</span> {item.title2} <br />
-                                        <span className="text-dark">{item.title3}</span>
-                                    </h1>
-                                    <p className="text-muted mt-3">{item.description}</p>
-                                    <button className="btn btn-primary px-4 py-2 mt-4 rounded-pill text-white fw-semibold">
-                                        Buy Now
-                                    </button>
-                                </div>
-                                <div className="col-md-6 text-center mt-4 mt-md-0 position-relative honey-zone">
-                                    <img src={item.image} alt="Product" className="img-fluid rounded" />
+                    {slides.map((item, index) => {
+                        // Define theme color based on index or product
+                        let theme = {};
+                        if (index === 0) {
+                            // Honey
+
+                            theme = {
+                                color: '#6c4f3d',
+                                button: 'bg-success',
+                                textClass: 'text-success',
+                            };
+                        } else if (index === 1) {
+                            // Dry Fruits
+                            theme = {
+                                color: '#F5B301',
+                                button: 'bg-warning',
+                                textClass: 'text-warning',
+                            };
+                        } else if (index === 2) {
+                            // Organic Oil
+                            theme = {
+                                color: '#708238',
+                                button: 'bg-primary',
+                                textClass: 'text-primary',
+                            };
+                        }
+
+                        return (
+                            <div key={index} className="slider-slide p-4">
+                                <div className="row align-items-center">
+                                    <div className="col-md-6 text-center text-md-start">
+                                        <h1 className="fw-bold display-5">
+                                            <span className={theme.textClass}>{item.title1}</span> {item.title2} <br />
+                                            <span className="text-dark">{item.title3}</span>
+                                        </h1>
+                                        <p className="text-muted mt-3">{item.description}</p>
+                                        <button className={`btn ${theme.button} px-4 py-2 mt-4 rounded-pill text-white fw-semibold`}>
+                                            Buy Now
+                                        </button>
+                                    </div>
+                                    <div className="col-md-6 text-center mt-4 mt-md-0 position-relative honey-zone">
+                                        <img src={item.image} alt="Product" className="img-fluid rounded" />
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    ))}
+                        );
+                    })}
                 </Slider>
             </div>
+
+
         </>
     );
 }
