@@ -173,6 +173,32 @@ ul {
 .slick-slide {
   padding: 10px;
 }
+
 .slick-dots li button:before {
-  color: #f1c40f; /* Yellowish dot color */
+  color: #f1c40f;
+  /* Yellowish dot color */
+}
+
+
+.product-card {
+  background-color: #fefefe;
+  transition: all 0.3s ease;
+  height: 100%;
+}
+
+.product-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+}
+
+.product-img img {
+  height: 280px;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+  border-bottom: 1px solid #eee;
+  width: 100%;
+}
+
+.product-img:hover img {
+  transform: scale(1.05);
 }
