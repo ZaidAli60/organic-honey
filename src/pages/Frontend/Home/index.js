@@ -2,7 +2,7 @@ import React from 'react'
 import Hero from './Hero'
 import About from './About'
 import Products from './Products'
-// import Testimonails from './Testimonails'
+import Testimonails from './Testimonails'
 
 export default function Index() {
     return (
@@ -10,7 +10,7 @@ export default function Index() {
             <Hero />
             <About />
             <Products />
-            {/* <Testimonails /> */}
+            <Testimonails />
         </>
     )
 }
