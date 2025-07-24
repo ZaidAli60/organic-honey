@@ -4,6 +4,7 @@ import Header from "../../components/header"
 import Home from "./Home"
 import Footer from 'components/footer/Footer'
 import ProductDetails from "./ProductDetails/Details"
+import CartPage from './Cart/Cart'
 
 export default function Index() {
 
@@ -13,6 +14,7 @@ export default function Index() {
             <main>
                 <Routes>
                     <Route path='/' element={<Home />} />
+                    <Route path='/cart' element={<CartPage />} />
                     <Route path='/product-details*' element={<ProductDetails />} />
                 </Routes>
             </main>
