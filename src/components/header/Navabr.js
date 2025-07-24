@@ -75,7 +75,7 @@ export default function Navabr() {
         <div className='navbar-container py-3'>
           <div className='logo'>
             <Link className='main-link' to='/'>
-              <a className='text-decoration-none text-primary' href="#"><i className="fa-solid fa-leaf me-2"></i> Organic2Buy</a>
+              <i className="fa-solid fa-leaf me-2"></i> Organic2Buy
             </Link>
           </div>
           <div>
