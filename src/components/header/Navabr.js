@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { IoChevronDownOutline } from 'react-icons/io5';
-
-import { Image } from 'antd';
+import { ShoppingCartOutlined } from '@ant-design/icons';
+import { useCart } from '../../context/CartContext';
 
 export default function Navabr() {
+  const { cartItems } = useCart();
   const [showNav, setShowNav] = useState(false);
   const [isHeaderScrolled, setIsHeaderScrolled] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 992);
-
+  console.log(isHeaderScrolled);
   const toggleNavItems = () => {
     setShowNav(!showNav);
   };
@@ -109,6 +109,17 @@ export default function Navabr() {
                 </div>
               </li> */}
               <li><Link to='/contact' onClick={closeNavOnClick}>Contact</Link></li>
+              <Link className="navbar-brand fw-bold" to="/">My Shop</Link>
+              <div className="d-flex align-items-center">
+                <Link to="/cart" className="position-relative me-3">
+                  <ShoppingCartOutlined style={{ fontSize: '24px' }} />
+                  {cartItems.length > 0 && (
+                    <span className="position-absolute top-5  translate-middle badge rounded-pill bg-danger">
+                      {cartItems.length}
+                    </span>
+                  )}
+                </Link>
+              </div>
             </ul>
           </div>
         </div>

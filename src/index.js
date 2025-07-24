@@ -6,6 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import "bootstrap/dist/js/bootstrap.bundle";
 import App from './App';
 import AppProviders from 'context/AppProviders';
+import { CartProvider } from 'context/CartContext';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -13,7 +14,9 @@ root.render(
   <React.StrictMode>
     <BrowserRouter >
       <AppProviders>
-        <App />
+        <CartProvider>
+          <App />
+        </CartProvider>
       </AppProviders>
     </BrowserRouter>
   </React.StrictMode>

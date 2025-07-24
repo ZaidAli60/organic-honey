@@ -1,7 +1,11 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
+import { useCart } from 'context/CartContext';
 
 export default function Products() {
+
+    const { addToCart } = useCart();
+
     const products = [
         {
             title: "Organic Honey",
@@ -48,23 +52,25 @@ export default function Products() {
                 <div className="row g-4">
                     {products.map((product, index) => (
                         <div className="col-md-4" key={index}>
-                            <Link to="/product-details" state={{ product }} className='text-decoration-none'>
-                                <div className="product-card border-0 shadow-sm rounded-4 overflow-hidden">
+                            <div className="product-card border-0 shadow-sm rounded-4 overflow-hidden">
+                                <Link to="/product-details" state={{ product }} className='text-decoration-none'>
                                     <div className="product-img p-2">
                                         <img src={product.image} alt={product.title} className="img-fluid w-100 rounded" />
                                     </div>
-                                    <div className="p-3 bg-white">
-                                        <h5 className="fw-bold text-primary">{product.title}</h5>
-                                        <p className="text-muted small">{product.description}</p>
-                                        <div className="d-flex justify-content-between align-items-center mt-3">
-                                            <span className="fw-semibold text-success fs-5">{product.price}</span>
-                                            <button className="btn btn-outline-primary btn-sm rounded-pill px-3 fw-semibold">
-                                                Add to Cart
-                                            </button>
-                                        </div>
+                                </Link>
+                                <div className="p-3 bg-white">
+                                    <h5 className="fw-bold text-primary">{product.title}</h5>
+                                    <p className="text-muted small">{product.description}</p>
+                                    <div className="d-flex justify-content-between align-items-center mt-3">
+                                        <span className="fw-semibold text-success fs-5">{product.price}</span>
+                                        <button className="btn btn-outline-primary btn-sm rounded-pill px-3 fw-semibold"
+                                            onClick={() => addToCart(product)}
+                                        >
+                                            Add to Cart
+                                        </button>
                                     </div>
                                 </div>
-                            </Link>
+                            </div>
                         </div>
                     ))}
                 </div>
