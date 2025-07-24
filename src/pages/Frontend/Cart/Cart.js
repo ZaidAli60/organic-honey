@@ -6,7 +6,7 @@ export default function CartPage() {
   const { cartItems, removeFromCart, updateQuantity } = useCart();
 
   const total = cartItems.reduce((sum, item) => sum + item.quantity * parseFloat(item.price.replace('$', '')), 0);
-console.log(cartItems);
+
   return (
     <div className="container my-5" style={{height:"50vh"}}>
       <h2 className="mb-4">🛒 Your Cart</h2>
