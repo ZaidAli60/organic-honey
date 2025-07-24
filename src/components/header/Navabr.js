@@ -92,12 +92,13 @@ export default function Navabr() {
           <div className={`nav-elements ${showNav ? 'active' : ''}`}>
             <ul className={`m-0 ${!showNav && 'flex-center'}`}>
               <li><Link to='/' onClick={closeNavOnClick}>Home</Link></li>
-              <li>
+              <li><Link to='/products' onClick={closeNavOnClick}>Products</Link></li>
+              {/* <li>
                 <div className='dropdown'>
                   <button className='dropdown-link' onClick={closeNavOnClick}>About<IoChevronDownOutline className='icon' /></button>
                 </div>
-              </li>
-              <li>
+              </li> */}
+              {/* <li>
                 <div className='dropdown'>
                   <button className='dropdown-link' onClick={closeNavOnClick}>Products<IoChevronDownOutline className='icon' /></button>
                   <ul>
@@ -106,7 +107,7 @@ export default function Navabr() {
                     </li>
                   </ul>
                 </div>
-              </li>
+              </li> */}
               <li><Link to='/contact' onClick={closeNavOnClick}>Contact</Link></li>
             </ul>
           </div>
