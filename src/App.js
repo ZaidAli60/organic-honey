@@ -7,7 +7,7 @@ import 'aos/dist/aos.css';
 import { ConfigProvider, App as AntdApp } from 'antd'; // ✅ Import App from antd
 
 const colors = {
-  primary: "#0a1420",
+  primary: "#88A842",
   success: "#05CD99",
   danger: "#D8463D",
   info: "#80BDF4",

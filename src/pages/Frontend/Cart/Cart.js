@@ -3,13 +3,15 @@ import React, { useState } from 'react';
 import { useCart } from '../../../context/CartContext';
 import { useAuthContext } from 'context/Auth';
 import axios from 'axios';
-import { Modal } from 'antd';
+import { Button, Modal } from 'antd';
 import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google';
+import { useNavigate } from 'react-router-dom';
 
 export default function CartPage() {
     const { user, readUserProfile } = useAuthContext()
     const { cartItems, removeFromCart, updateQuantity } = useCart();
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const navigate = useNavigate()
     console.log(user);
     const showModal = () => {
         setIsModalOpen(true);
@@ -62,6 +64,8 @@ export default function CartPage() {
             // Proceed to checkout
             console.log("Proceeding to checkout", user);
             // You can show a checkout modal or redirect to /checkout
+
+            navigate("/checkout");
         }
     };
 
@@ -108,9 +112,11 @@ export default function CartPage() {
                                 ))}
                             </tbody>
                         </table>
-                        <h4 className="text-end">Total: ${total.toFixed(2)}</h4>
+                        <h4 className="text-end">Total: ${total?.toFixed(2)}</h4>
                         <div className="text-end">
-                            <button className="btn btn-success" onClick={handleCheckout}>Proceed to Checkout</button>
+                            <Button type="primary" htmlType="submit" onClick={handleCheckout} size="large">
+                                Proceed to Checkout
+                            </Button>
                         </div>
                     </div>
                 )}

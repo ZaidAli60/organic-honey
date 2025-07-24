@@ -5,6 +5,7 @@ import Home from "./Home"
 import Footer from 'components/footer/Footer'
 import ProductDetails from "./ProductDetails/Details"
 import CartPage from './Cart/Cart'
+import Checkout from './Checkout/Checkout'
 
 export default function Index() {
 
@@ -15,6 +16,7 @@ export default function Index() {
                 <Routes>
                     <Route path='/' element={<Home />} />
                     <Route path='/cart' element={<CartPage />} />
+                    <Route path='/checkout' element={<Checkout />} />
                     <Route path='/product-details*' element={<ProductDetails />} />
                 </Routes>
             </main>

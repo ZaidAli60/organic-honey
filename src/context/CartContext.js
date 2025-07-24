@@ -39,6 +39,11 @@ export const CartProvider = ({ children }) => {
     );
   };
 
+  const total = cartItems.reduce((sum, item) => {
+    const price = parseFloat(item.price?.replace('$', '')) || 0;
+    return sum + item.quantity * price;
+  }, 0);
+
   // useCart.js or CartContext.js
 
   useEffect(() => {
@@ -53,7 +58,7 @@ export const CartProvider = ({ children }) => {
   }, [cartItems]);
 
   return (
-    <CartContext.Provider value={{ cartItems, addToCart, removeFromCart, updateQuantity }}>
+    <CartContext.Provider value={{ cartItems, addToCart, removeFromCart, updateQuantity ,total}}>
       {children}
     </CartContext.Provider>
   );
