@@ -3,7 +3,7 @@ import { Route, Routes} from 'react-router-dom'
 import Header from "../../components/header"
 import Home from "./Home"
 import Footer from 'components/footer/Footer'
-import ProductDetails from "./ProductDetails"
+import ProductDetails from "./ProductDetails/Details"
 
 export default function Index() {
 

@@ -48,7 +48,7 @@ export default function Products() {
                 <div className="row g-4">
                     {products.map((product, index) => (
                         <div className="col-md-4" key={index}>
-                            <Link to="/product-details" className='text-decoration-none'>
+                            <Link to="/product-details" state={{ product }} className='text-decoration-none'>
                                 <div className="product-card border-0 shadow-sm rounded-4 overflow-hidden">
                                     <div className="product-img p-2">
                                         <img src={product.image} alt={product.title} className="img-fluid w-100 rounded" />
