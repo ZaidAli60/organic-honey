@@ -91,7 +91,7 @@ function Checkout() {
                             <h5 className="mb-3">Your Details</h5>
                             <Form layout="vertical" form={form} onFinish={handleCheckout}>
                                 <Form.Item name="fullName" label="Full Name" initialValue={user?.fullName}  rules={[{ required: true }]}>
-                                    <Input placeholder="John Doe" />
+                                    <Input placeholder="Enter your name" />
                                 </Form.Item>
 
                                 <Form.Item
@@ -100,7 +100,7 @@ function Checkout() {
                                     rules={[{ required: true, type: 'email' }]}
                                     initialValue={user?.email}
                                 >
-                                    <Input placeholder="example@email.com" disabled />
+                                    <Input placeholder="Enter your email" />
                                 </Form.Item>
 
                                 <Form.Item name="phone" label="Phone Number" rules={[{ required: true }]}>

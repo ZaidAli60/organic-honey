@@ -13,6 +13,7 @@ window.links = {
 }
 
 window.api = process.env.REACT_APP_API_END_POINT
+
 window.dateFormat = (date, format = "DD-MM-YYYY") => dayjs(date).format(format)
 
 window.today = dayjs(new Date()).format("DD-MM-YYYY")

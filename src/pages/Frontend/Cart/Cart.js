@@ -1,18 +1,17 @@
-// pages/CartPage.jsx
 import React, { useState } from 'react';
-import { useCart } from '../../../context/CartContext';
-import { useAuthContext } from 'context/Auth';
-import axios from 'axios';
-import { Button, Modal } from 'antd';
 import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google';
+import { useCart } from '../../../context/CartContext';
 import { useNavigate } from 'react-router-dom';
+import { useAuthContext } from 'context/Auth';
+import { Button, Modal } from 'antd';
+import axios from 'axios';
 
 export default function CartPage() {
     const { user, readUserProfile } = useAuthContext()
     const { cartItems, removeFromCart, updateQuantity } = useCart();
     const [isModalOpen, setIsModalOpen] = useState(false);
     const navigate = useNavigate()
-    console.log(user);
+
     const showModal = () => {
         setIsModalOpen(true);
     };
@@ -30,21 +29,13 @@ export default function CartPage() {
             }, { withCredentials: true });
             // Destructure response
             const { status, data } = res;
-
             if (status === 200 && data.token) {
                 const { token } = data;
-
                 // Save JWT to localStorage
                 localStorage.setItem("jwt", token);
-
-                // Load user profile (you can pass token or user object)
                 readUserProfile({ token });
-
-                // Show toast message
-                window.toastify("Login successful", "success");
-
-                // Close login modal
                 setIsModalOpen(false);
+                window.toastify("Login successful", "success");
             } else {
                 console.error("Unexpected response:", data);
                 window.toastify("Login failed: Invalid response", "error");
@@ -61,16 +52,12 @@ export default function CartPage() {
             // Redirect to login page (Google Auth)
             showModal()
         } else {
-            // Proceed to checkout
-            console.log("Proceeding to checkout", user);
-            // You can show a checkout modal or redirect to /checkout
-
             navigate("/checkout");
         }
     };
 
     return (
-        <GoogleOAuthProvider clientId="731309783889-r2ou2sq039nohb9i7hga0bp6uabqe4m5.apps.googleusercontent.com">
+        <GoogleOAuthProvider clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}>
             <div className="container my-5" style={{ height: "50vh" }}>
                 <h2 className="mb-4">🛒 Your Cart</h2>
                 {cartItems.length === 0 ? (

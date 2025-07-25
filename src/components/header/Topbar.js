@@ -7,7 +7,7 @@ import { UserOutlined, LogoutOutlined } from '@ant-design/icons';
 import axios from 'axios';
 
 export default function Topbar() {
-    const { isAuth, user, readUserProfile,handleLogout } = useAuthContext()
+    const { isAuth, user, readUserProfile, handleLogout } = useAuthContext()
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     const showModal = () => {
@@ -63,7 +63,7 @@ export default function Topbar() {
 
 
     return (
-        <GoogleOAuthProvider clientId="731309783889-r2ou2sq039nohb9i7hga0bp6uabqe4m5.apps.googleusercontent.com">
+        <GoogleOAuthProvider clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}>
             <div className="bg-primary border-bottom py-2">
                 <div className="container d-flex flex-column flex-md-row justify-content-between align-items-center">
 
