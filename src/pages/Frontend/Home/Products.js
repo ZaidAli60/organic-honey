@@ -9,6 +9,7 @@ export default function Products() {
     const { addToCart } = useCart();
     const [documents, setDocuments] = useState([])
     const [isLoading, setIsLoading] = useState(false)
+    const [messageApi, contextHolder] = message.useMessage();
 
     console.log(documents);
     // const products = [
@@ -74,6 +75,7 @@ export default function Products() {
     return (
         <div className="bg-light py-5">
             <div className="container my-5">
+                {contextHolder}
                 <h2 className="text-center fw-bold mb-5">🛒 Shop Products</h2>
                 <div className="row g-4">
 
@@ -98,7 +100,10 @@ export default function Products() {
                                                 <div className="d-flex justify-content-between align-items-center mt-3">
                                                     <span className="fw-semibold text-success fs-5" >PKR {product.price}</span>
                                                     <button className="btn btn-outline-primary btn-sm rounded-pill px-3 fw-semibold"
-                                                        onClick={() => addToCart(product)}
+                                                        onClick={() => {
+                                                            addToCart(product)
+                                                            messageApi.success(`${product.title} added to cart!`)
+                                                        }}
                                                     >
                                                         Add to Cart
                                                     </button>

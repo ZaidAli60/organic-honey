@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { Button, Rate, Tabs, Tag, Spin } from 'antd';
+import { Button, Rate, Tabs, Tag, Spin, message } from 'antd';
 import { useCart } from 'context/CartContext';
 import axios from 'axios';
 
 export default function ProductDetails() {
     const { addToCart } = useCart();
     const navigate = useNavigate();
+    const [messageApi, contextHolder] = message.useMessage();
 
     const { slug } = useParams();
     const [product, setProduct] = useState(null);
@@ -35,6 +36,7 @@ export default function ProductDetails() {
 
     return (
         <div className="container py-5">
+            {contextHolder}
             <div className="row g-5 align-items-start">
                 {/* Product Image */}
                 <div className="col-md-6 text-center">
@@ -57,7 +59,10 @@ export default function ProductDetails() {
                     <p className="text-secondary">{product.description}</p>
 
                     <div className="d-flex align-items-center gap-3 my-3">
-                        <Button type="primary" size="large" onClick={() => addToCart(product)}>Add to cart</Button>
+                        <Button type="primary" size="large" onClick={() => {
+                            addToCart(product)
+                            messageApi.success(`${product.title} added to cart!`)
+                        }}>Add to cart</Button>
                         <Button type="default" size="large" onClick={() => navigate(-1)}>Back</Button>
                     </div>
 
