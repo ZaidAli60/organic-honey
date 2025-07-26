@@ -5,7 +5,7 @@ import ProductDetails from './Details'
 export default function Messages() {
     return (
         <Routes>
-            <Route path=':slug' element={<ProductDetails />} />
+            <Route path='/:slug' element={<ProductDetails />} />
         </Routes>
     )
 }

@@ -3,7 +3,7 @@ import { Route, Routes } from 'react-router-dom'
 import Header from "../../components/header"
 import Home from "./Home"
 import Footer from 'components/footer/Footer'
-import ProductDetails from "./ProductDetails/Details"
+import ProductDetails from "./ProductDetails"
 import CartPage from './Cart/Cart'
 import Checkout from './Checkout/Checkout'
 import PrivateRoute from 'components/PrivateRoute'

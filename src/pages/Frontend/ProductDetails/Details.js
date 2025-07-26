@@ -1,55 +1,36 @@
-// import React from 'react';
-// import { useLocation, useNavigate } from 'react-router-dom';
-// import { Button } from 'antd';
-
-// export default function ProductDetails() {
-//     const { state } = useLocation();
-//     console.log(state);
-//     const product = state?.product;
-//     const navigate = useNavigate();
-
-//     if (!product) {
-//         return <div className="container py-5">Product not found.</div>;
-//     }
-
-//     return (
-//         <div className="container py-5">
-//             <div className="row g-4 align-items-center">
-//                 {/* Image Section */}
-//                 <div className="col-md-6">
-//                     <img src={product.image} alt={product.title} className="img-fluid rounded shadow" />
-//                 </div>
-
-//                 {/* Info Section */}
-//                 <div className="col-md-6">
-//                     <h2 className="fw-bold text-primary">{product.title}</h2>
-//                     <p className="text-muted">{product.description}</p>
-//                     <h4 className="text-success fw-semibold">{product.price}</h4>
-
-//                     <div className="d-flex gap-3 mt-4">
-//                         <Button type="primary" size="large">Add to Cart</Button>
-//                         <Button type="default" size="large" onClick={() => navigate(-1)}>Back</Button>
-//                     </div>
-//                 </div>
-//             </div>
-//         </div>
-//     );
-// }
-
-
-import React, { useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { Button, Rate, InputNumber, Tabs, Tag } from 'antd';
+import React, { useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import { Button, Rate, InputNumber, Tabs, Tag, Spin } from 'antd';
+import axios from 'axios';
 
 export default function ProductDetails() {
-    const { state } = useLocation();
-    const product = state?.product;
     const navigate = useNavigate();
     const [quantity, setQuantity] = useState(1);
 
-    if (!product) {
-        return <div className="container py-5">Product not found.</div>;
+    const { slug } = useParams();
+    const [product, setProduct] = useState(null);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        axios.get(`${window.api}/public/product/${slug}`)
+            .then(res => {
+                setProduct(res.data.product);
+            })
+            .catch(err => {
+                console.error("Failed to fetch product:", err);
+            })
+            .finally(() => setLoading(false));
+    }, [slug]);
+
+    if (loading) {
+        return (
+            <div className="container py-5 d-flex justify-content-center align-items-center" style={{ minHeight: '60vh' }}>
+                <Spin size="large" />
+            </div>
+        );
     }
+
+    if (!product) return <div className="container py-5" style={{ minHeight: '60vh' }}>Product not found.</div>;
 
     return (
         <div className="container py-5">
@@ -68,7 +49,7 @@ export default function ProductDetails() {
                     <p className="text-muted mb-2">1 customer review</p>
 
                     <div className="mb-3">
-                        <span className="text-muted text-decoration-line-through me-2">${(product.price * 1.5).toFixed(2)}</span>
+                        <span className="text-muted text-decoration-line-through me-2">PKR{(product.price * 1.5).toFixed(2)}</span>
                         <span className="h4 text-success fw-semibold">PKR {product.price}</span>
                     </div>
 
