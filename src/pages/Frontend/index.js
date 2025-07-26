@@ -25,7 +25,7 @@ export default function Index() {
                             </PrivateRoute>
                         }
                     />
-                    <Route path='/product-details*' element={<ProductDetails />} />
+                    <Route path='/product*' element={<ProductDetails />} />
                 </Routes>
             </main>
             <Footer />

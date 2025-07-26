@@ -56,7 +56,7 @@ export default function ProductDetails() {
             <div className="row g-5 align-items-start">
                 {/* Product Image */}
                 <div className="col-md-6 text-center">
-                    <img src={product.image} alt={product.title} className="img-fluid rounded shadow-sm" style={{ maxHeight: 400 }} />
+                    <img src={product.imageURL} alt={product.title} className="img-fluid rounded shadow-sm" style={{ maxHeight: 400 }} />
                 </div>
 
                 {/* Product Info */}
@@ -69,7 +69,7 @@ export default function ProductDetails() {
 
                     <div className="mb-3">
                         <span className="text-muted text-decoration-line-through me-2">${(product.price * 1.5).toFixed(2)}</span>
-                        <span className="h4 text-success fw-semibold">${product.price}</span>
+                        <span className="h4 text-success fw-semibold">PKR {product.price}</span>
                     </div>
 
                     <p className="text-secondary">{product.description}</p>
