@@ -1,15 +1,17 @@
 import React, { useState } from 'react';
 import { useCart } from '../../../context/CartContext';
 import { useAuthContext } from '../../../context/Auth';
-import { Button, Divider, Input, Form } from 'antd';
+import { Button, Divider, Input, Form, message } from 'antd';
 import axios from 'axios';
 
 function Checkout() {
     const { user } = useAuthContext();
-    const { cartItems, removeFromCart, updateQuantity, total } = useCart();
+    const { cartItems, removeFromCart, updateQuantity, total, clearCart } = useCart();
     const [form] = Form.useForm();
     const [loading, setLoading] = useState(false);
+    const [messageApi, contextHolder] = message.useMessage();
 
+    // console.log(cartItems);
     const handleCheckout = async (values) => {
         if (!user) {
             window.toastify("Please login with Google to checkout", "error");
@@ -26,17 +28,17 @@ function Checkout() {
                 items: cartItems,
                 total: total.toFixed(2),
             };
-
             const res = await axios.post(`${window.api}/orders`, orderPayload);
-
+            console.log(res);
             if (res.status === 200) {
-                window.toastify("Order placed successfully!", "success");
+                messageApi.success('Order placed successfully!');
                 form.resetFields();
                 localStorage.removeItem("cartItems");
+                clearCart();
             }
         } catch (err) {
             console.error(err);
-            window.toastify("Failed to place order", "error");
+            messageApi.error('Failed to place order');
         } finally {
             setLoading(false);
         }
@@ -45,7 +47,7 @@ function Checkout() {
     return (
         <div className="container my-5">
             <h2 className="text-center mb-4 text-primary fw-bold">Checkout</h2>
-
+            {contextHolder} {/* ✅ Required to show messages */}
             {cartItems.length === 0 ? (
                 <div className="text-center p-5 bg-light rounded shadow">
                     <h4>Your cart is empty.</h4>

@@ -12,23 +12,27 @@ export default function Index() {
 
     return (
         <>
-            <Header />
-            <main>
-                <Routes>
-                    <Route path='/' element={<Home />} />
-                    <Route path='/cart' element={<CartPage />} />
-                    <Route
-                        path="/checkout"
-                        element={
-                            <PrivateRoute>
-                                <Checkout />
-                            </PrivateRoute>
-                        }
-                    />
-                    <Route path='/product*' element={<ProductDetails />} />
-                </Routes>
-            </main>
-            <Footer />
+            <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+                <Header />
+
+                <main style={{ flex: 1 }}>
+                    <Routes>
+                        <Route path='/' element={<Home />} />
+                        <Route path='/cart' element={<CartPage />} />
+                        <Route
+                            path="/checkout"
+                            element={
+                                <PrivateRoute>
+                                    <Checkout />
+                                </PrivateRoute>
+                            }
+                        />
+                        <Route path='/product*' element={<ProductDetails />} />
+                    </Routes>
+                </main>
+
+                <Footer />
+            </div>
         </>
     )
 }

@@ -51,6 +51,11 @@ export const CartProvider = ({ children }) => {
     return sum + item.quantity * price;
   }, 0);
 
+  const clearCart = () => {
+    setCartItems([]);
+    localStorage.removeItem('cartItems');
+  };
+
   // useCart.js or CartContext.js
 
   useEffect(() => {
@@ -65,7 +70,7 @@ export const CartProvider = ({ children }) => {
   }, [cartItems]);
 
   return (
-    <CartContext.Provider value={{ cartItems, addToCart, removeFromCart, updateQuantity, total }}>
+    <CartContext.Provider value={{ cartItems, addToCart, removeFromCart, updateQuantity, total, clearCart }}>
       {children}
     </CartContext.Provider>
   );

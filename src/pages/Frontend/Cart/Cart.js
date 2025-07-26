@@ -65,7 +65,7 @@ export default function CartPage() {
 
     return (
         <GoogleOAuthProvider clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}>
-            <div className="container my-5" style={{ height: "50vh" }}>
+            <div className="container my-5">
                 <h2 className="mb-4">🛒 Your Cart</h2>
                 {cartItems.length === 0 ? (
                     <p>Your cart is empty.</p>
