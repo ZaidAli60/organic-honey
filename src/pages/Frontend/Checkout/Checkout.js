@@ -59,7 +59,7 @@ function Checkout() {
                             {cartItems.map(item => (
                                 <div key={item.title} className="d-flex justify-content-between align-items-center border-bottom py-3">
                                     <div className="d-flex align-items-center">
-                                        <img src={item.image} alt={item.title} className="me-3 rounded" style={{ width: 70, height: 70, objectFit: 'cover' }} />
+                                        <img src={item.imageURL} alt={item.title} className="me-3 rounded" style={{ width: 70, height: 70, objectFit: 'cover' }} />
                                         <div>
                                             <h6 className="mb-1 fw-semibold">{item.title}</h6>
                                             <div className="d-flex align-items-center">
@@ -75,8 +75,15 @@ function Checkout() {
                                         </div>
                                     </div>
                                     <div className="text-end">
-                                        <p className="mb-1 fw-semibold text-success">
+                                        {/* <p className="mb-1 fw-semibold text-success">
                                             ${(parseFloat(item.price.replace('$', '')) * item.quantity).toFixed(2)}
+                                        </p> */}
+                                        <p className="mb-1 fw-semibold text-success">
+                                            PKR {(
+                                                (typeof item.price === 'string'
+                                                    ? parseFloat(item.price.replace('$', ''))
+                                                    : item.price) * item.quantity
+                                            ).toFixed(2)}
                                         </p>
                                         <Button type="link" danger onClick={() => removeFromCart(item.title)}>Remove</Button>
                                     </div>
@@ -90,7 +97,7 @@ function Checkout() {
                         <div className="bg-light p-4 rounded shadow-sm">
                             <h5 className="mb-3">Your Details</h5>
                             <Form layout="vertical" form={form} onFinish={handleCheckout}>
-                                <Form.Item name="fullName" label="Full Name" initialValue={user?.fullName}  rules={[{ required: true }]}>
+                                <Form.Item name="fullName" label="Full Name" initialValue={user?.fullName} rules={[{ required: true }]}>
                                     <Input placeholder="Enter your name" />
                                 </Form.Item>
 

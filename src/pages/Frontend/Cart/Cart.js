@@ -20,7 +20,14 @@ export default function CartPage() {
         setIsModalOpen(false);
     };
 
-    const total = cartItems.reduce((sum, item) => sum + item.quantity * parseFloat(item.price.replace('$', '')), 0);
+    // const total = cartItems.reduce((sum, item) => sum + item.quantity * parseFloat(item.price.replace('$', '')), 0);
+    // With this safe version
+    const total = cartItems.reduce((sum, item) => {
+        const price = typeof item.price === 'string'
+            ? parseFloat(item.price.replace('$', ''))
+            : item.price;
+        return sum + item.quantity * price;
+    }, 0);
 
     const handleLoginSuccess = async (credentialResponse) => {
         try {
@@ -78,7 +85,7 @@ export default function CartPage() {
                             <tbody>
                                 {cartItems.map((item, idx) => (
                                     <tr key={idx}>
-                                        <td><img src={item.image} alt={item.title} width={50} /></td>
+                                        <td><img className='rounded' src={item.imageURL} alt={item.title} width={50} /></td>
                                         <td>{item.title}</td>
                                         <td>
                                             <input
@@ -91,7 +98,14 @@ export default function CartPage() {
                                             />
                                         </td>
                                         <td>{item.price}</td>
-                                        <td>${(item.quantity * parseFloat(item.price.replace('$', ''))).toFixed(2)}</td>
+                                        {/* <td>${(item.quantity * parseFloat(item.price.replace('$', ''))).toFixed(2)}</td> */}
+                                        <td>
+                                            PKR {(item.quantity * (
+                                                typeof item.price === 'string'
+                                                    ? parseFloat(item.price.replace('$', ''))
+                                                    : item.price
+                                            )).toFixed(2)}
+                                        </td>
                                         <td>
                                             <button onClick={() => removeFromCart(item.title)} className="btn btn-sm btn-danger">Remove</button>
                                         </td>
@@ -99,7 +113,7 @@ export default function CartPage() {
                                 ))}
                             </tbody>
                         </table>
-                        <h4 className="text-end">Total: ${total?.toFixed(2)}</h4>
+                        <h4 className="text-end">Total: PKR {total?.toFixed(2)}</h4>
                         <div className="text-end">
                             <Button type="primary" htmlType="submit" onClick={handleCheckout} size="large">
                                 Proceed to Checkout

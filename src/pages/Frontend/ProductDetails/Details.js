@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { Button, Rate, InputNumber, Tabs, Tag, Spin } from 'antd';
+import { Button, Rate, Tabs, Tag, Spin } from 'antd';
+import { useCart } from 'context/CartContext';
 import axios from 'axios';
 
 export default function ProductDetails() {
+    const { addToCart } = useCart();
     const navigate = useNavigate();
-    const [quantity, setQuantity] = useState(1);
 
     const { slug } = useParams();
     const [product, setProduct] = useState(null);
@@ -56,8 +57,7 @@ export default function ProductDetails() {
                     <p className="text-secondary">{product.description}</p>
 
                     <div className="d-flex align-items-center gap-3 my-3">
-                        <InputNumber min={1} value={quantity} onChange={setQuantity} />
-                        <Button type="primary" size="large">Add to cart</Button>
+                        <Button type="primary" size="large" onClick={() => addToCart(product)}>Add to cart</Button>
                         <Button type="default" size="large" onClick={() => navigate(-1)}>Back</Button>
                     </div>
 

@@ -39,8 +39,15 @@ export const CartProvider = ({ children }) => {
     );
   };
 
+  // const total = cartItems.reduce((sum, item) => {
+  //   const price = parseFloat(item.price?.replace('$', '')) || 0;
+  //   return sum + item.quantity * price;
+  // }, 0);
+
   const total = cartItems.reduce((sum, item) => {
-    const price = parseFloat(item.price?.replace('$', '')) || 0;
+    const price = parseFloat(
+      typeof item.price === 'string' ? item.price.replace('$', '') : item.price
+    ) || 0;
     return sum + item.quantity * price;
   }, 0);
 
@@ -58,7 +65,7 @@ export const CartProvider = ({ children }) => {
   }, [cartItems]);
 
   return (
-    <CartContext.Provider value={{ cartItems, addToCart, removeFromCart, updateQuantity ,total}}>
+    <CartContext.Provider value={{ cartItems, addToCart, removeFromCart, updateQuantity, total }}>
       {children}
     </CartContext.Provider>
   );
