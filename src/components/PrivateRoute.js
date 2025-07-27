@@ -10,6 +10,5 @@ export default function PrivateRoute({ children }) {
         // Redirect to cart (where Google login happens)
         return <Navigate to="/cart" replace />;
     }
-
     return children;
 }

@@ -3,13 +3,14 @@ import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google';
 import { useCart } from '../../../context/CartContext';
 import { useNavigate } from 'react-router-dom';
 import { useAuthContext } from 'context/Auth';
-import { Button, Modal } from 'antd';
+import { Button, message, Modal } from 'antd';
 import axios from 'axios';
 
 export default function CartPage() {
     const { user, readUserProfile } = useAuthContext()
     const { cartItems, removeFromCart, updateQuantity } = useCart();
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [messageApi, contextHolder] = message.useMessage();
     const navigate = useNavigate()
 
     const showModal = () => {
@@ -42,14 +43,14 @@ export default function CartPage() {
                 localStorage.setItem("jwt", token);
                 readUserProfile({ token });
                 setIsModalOpen(false);
-                window.toastify("Login successful", "success");
+                messageApi.success("Login successful");
             } else {
                 console.error("Unexpected response:", data);
-                window.toastify("Login failed: Invalid response", "error");
+                messageApi.error("Login failed: Invalid response");
             }
         } catch (error) {
             console.error('Login failed:', error);
-            window.toastify("Login failed: Server error", "error");
+            messageApi.error("Login failed: Server error");
         }
     };
 
@@ -65,6 +66,7 @@ export default function CartPage() {
 
     return (
         <GoogleOAuthProvider clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}>
+            {contextHolder}
             <div className="container my-5">
                 <h2 className="mb-4">🛒 Your Cart</h2>
                 {cartItems.length === 0 ? (

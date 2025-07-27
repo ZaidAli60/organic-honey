@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback, createContext, useContext, useReducer } from 'react'
 import axios from 'axios';
+import { message } from 'antd';
 
 const AuthContext = createContext();
 
@@ -25,6 +26,7 @@ export default function Auth({ children }) {
 
     const [state, dispatch] = useReducer(reducer, initialState)
     const [isAppLoading, setIsAppLoding] = useState(true)
+    const [messageApi, contextHolder] = message.useMessage();
 
     const getApiConfig = () => {
         const token = localStorage.getItem("jwt")
@@ -64,11 +66,12 @@ export default function Auth({ children }) {
     const handleLogout = () => {
         localStorage.removeItem("jwt")
         dispatch({ type: "SET_LOGGED_OUT" })
-        window.toastify("Logout successful", "success")
+        messageApi.success("Logout successful")
     }
 
     return (
         <AuthContext.Provider value={{ ...state, dispatch, isAppLoading, handleLogout, readUserProfile, getApiConfig }}>
+            {contextHolder}
             {children}
         </AuthContext.Provider>
     )

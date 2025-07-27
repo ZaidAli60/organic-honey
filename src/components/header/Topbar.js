@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FaPhoneAlt, FaEnvelope } from 'react-icons/fa';
-import { Modal, Button, Dropdown, Space, Avatar } from 'antd';
+import { Modal, Button, Dropdown, Space, Avatar, message } from 'antd';
 import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google';
 import { useAuthContext } from 'context/Auth';
 import { UserOutlined, LogoutOutlined } from '@ant-design/icons';
@@ -9,6 +9,7 @@ import axios from 'axios';
 export default function Topbar() {
     const { isAuth, user, readUserProfile, handleLogout } = useAuthContext()
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [messageApi, contextHolder] = message.useMessage();
 
     const showModal = () => {
         setIsModalOpen(true);
@@ -19,7 +20,7 @@ export default function Topbar() {
     };
 
     const menuItems = [
-        {
+         {
             key: 'logout',
             label: (
                 <span onClick={handleLogout} >
@@ -47,23 +48,24 @@ export default function Topbar() {
                 readUserProfile({ token });
 
                 // Show toast message
-                window.toastify("Login successful", "success");
+                messageApi.success('Login successful');
 
                 // Close login modal
                 setIsModalOpen(false);
             } else {
                 console.error("Unexpected response:", data);
-                window.toastify("Login failed: Invalid response", "error");
+                messageApi.error("Login failed: Invalid response");
             }
         } catch (error) {
             console.error('Login failed:', error);
-            window.toastify("Login failed: Server error", "error");
+            messageApi.error("Login failed: Server error");
         }
     };
 
 
     return (
         <GoogleOAuthProvider clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}>
+            {contextHolder}
             <div className="bg-primary border-bottom py-2">
                 <div className="container d-flex flex-column flex-md-row justify-content-between align-items-center">
 
