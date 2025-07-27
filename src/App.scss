@@ -208,3 +208,10 @@ footer a:hover {
   color: #ffc107 !important; /* Bootstrap warning color */
   transition: 0.3s;
 }
+
+
+.custom-success-modal .ant-modal-content {
+    border-radius: 16px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+    padding: 0;
+}

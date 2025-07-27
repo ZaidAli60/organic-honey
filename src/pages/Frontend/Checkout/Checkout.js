@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useCart } from '../../../context/CartContext';
 import { useAuthContext } from '../../../context/Auth';
 import { Button, Divider, Input, Form, message } from 'antd';
+import { Modal } from 'antd';
 import axios from 'axios';
 
 function Checkout() {
@@ -10,6 +11,8 @@ function Checkout() {
     const [form] = Form.useForm();
     const [loading, setLoading] = useState(false);
     const [messageApi, contextHolder] = message.useMessage();
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [orderNumber, setOrderNumber] = useState(null);
 
     // console.log(cartItems);
     const handleCheckout = async (values) => {
@@ -31,6 +34,8 @@ function Checkout() {
             const res = await axios.post(`${window.api}/orders`, orderPayload);
             console.log(res);
             if (res.status === 200) {
+                setOrderNumber(res.data.orderNumber); // 👈 Set order number from response
+                setIsModalOpen(true);                 // 👈 Open modal
                 messageApi.success('Order placed successfully!');
                 form.resetFields();
                 localStorage.removeItem("cartItems");
@@ -77,9 +82,6 @@ function Checkout() {
                                         </div>
                                     </div>
                                     <div className="text-end">
-                                        {/* <p className="mb-1 fw-semibold text-success">
-                                            ${(parseFloat(item.price.replace('$', '')) * item.quantity).toFixed(2)}
-                                        </p> */}
                                         <p className="mb-1 fw-semibold text-success">
                                             PKR {(
                                                 (typeof item.price === 'string'
@@ -135,6 +137,26 @@ function Checkout() {
                     </div>
                 </div>
             )}
+            <Modal
+                title={null}
+                open={isModalOpen}
+                footer={null}
+                closable={false}
+                centered
+                className="custom-success-modal"
+            >
+                <div className="text-center p-4">
+                    <div style={{ fontSize: 48, color: '#52c41a' }}>
+                        ✅
+                    </div>
+                    <h3 className="mt-3 text-success fw-bold">Order Placed Successfully!</h3>
+                    <p className="mb-1">Thank you for your purchase.</p>
+                    <p className="fs-5"><strong>Your Order Number:</strong> #{orderNumber}</p>
+                    <Button type="primary" size="large" className="mt-3" onClick={() => setIsModalOpen(false)}>
+                        Close
+                    </Button>
+                </div>
+            </Modal>
         </div>
     )
 }
