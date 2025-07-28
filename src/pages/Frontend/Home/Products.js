@@ -78,45 +78,50 @@ export default function Products() {
                 {contextHolder}
                 <h2 className="text-center fw-bold mb-5">🛒 Shop Products</h2>
                 <div className="row g-4">
-
                     {isLoading ? (
                         <div className="d-flex justify-content-center align-items-center" style={{ minHeight: '300px' }}>
                             <Spin size="large" />
                         </div>
-                    ) :
-                        (
-                            <div className='row'>
-                                {documents.map((product, index) => (
-                                    <div className="col-md-4" key={index}>
-                                        <div className="product-card border-0 shadow-sm rounded-4 overflow-hidden">
-                                            <Link to={`product/${product.slug}`} state={{ product }} className='text-decoration-none'>
-                                                <div className="product-img p-2">
-                                                    <img src={product.imageURL} alt={product.title} className="img-fluid w-100 rounded" />
-                                                </div>
-                                            </Link>
-                                            <div className="p-3 bg-white">
+                    ) : (
+                        <div className="row">
+                            {documents.map((product, index) => (
+                                <div className="col-md-4 d-flex" key={index}>
+                                    <div className="product-card shadow-sm rounded-4 overflow-hidden d-flex flex-column w-100">
+                                        <Link to={`product/${product.slug}`} state={{ product }} className="text-decoration-none">
+                                            <div className="product-img">
+                                                <img
+                                                    src={product.imageURL}
+                                                    alt={product.title}
+                                                    className="img-fluid w-100 object-fit-cover"
+                                                    style={{ height: '250px' }}
+                                                />
+                                            </div>
+                                        </Link>
+                                        <div className="p-3 d-flex flex-column justify-content-between flex-grow-1 bg-white">
+                                            <div>
                                                 <h5 className="fw-bold text-primary">{product.title}</h5>
-                                                <p className="text-muted small">{product.description}</p>
-                                                <div className="d-flex justify-content-between align-items-center mt-3">
-                                                    <span className="fw-semibold text-success fs-5" >PKR {product.price}</span>
-                                                    <button className="btn btn-outline-primary btn-sm rounded-pill px-3 fw-semibold"
-                                                        onClick={() => {
-                                                            addToCart(product)
-                                                            messageApi.success(`${product.title} added to cart!`)
-                                                        }}
-                                                    >
-                                                        Add to Cart
-                                                    </button>
-                                                </div>
+                                                <p className="text-muted small">{product.description?.substring(0, 80)}...</p>
+                                            </div>
+                                            <div className="d-flex justify-content-between align-items-center mt-auto pt-2">
+                                                <span className="fw-semibold text-success fs-5">PKR {product.price}</span>
+                                                <button
+                                                    className="btn btn-outline-primary btn-sm rounded-pill px-3 fw-semibold"
+                                                    onClick={() => {
+                                                        addToCart(product);
+                                                        messageApi.success(`${product.title} added to cart!`);
+                                                    }}
+                                                >
+                                                    Add to Cart
+                                                </button>
                                             </div>
                                         </div>
                                     </div>
-                                ))
-                                }
-                            </div>
-                        )
-                    }
+                                </div>
+                            ))}
+                        </div>
+                    )}
                 </div>
+
             </div>
         </div>
     )
