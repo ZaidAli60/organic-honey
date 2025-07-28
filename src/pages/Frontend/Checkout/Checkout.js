@@ -32,7 +32,6 @@ function Checkout() {
                 total: total.toFixed(2),
             };
             const res = await axios.post(`${window.api}/orders`, orderPayload);
-            console.log(res);
             if (res.status === 200) {
                 setOrderNumber(res.data.orderNumber); // 👈 Set order number from response
                 setIsModalOpen(true);                 // 👈 Open modal

@@ -11,7 +11,7 @@ export default function Products() {
     const [isLoading, setIsLoading] = useState(false)
     const [messageApi, contextHolder] = message.useMessage();
 
-    console.log(documents);
+    // console.log(documents);
     // const products = [
     //     {
     //         title: "Organic Honey",
